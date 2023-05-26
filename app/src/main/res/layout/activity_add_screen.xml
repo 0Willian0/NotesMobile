@@ -5,7 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@android:color/transparent"
+    android:background="@android:color/black"
     tools:context=".AddScreen">
 
     <LinearLayout
@@ -21,6 +21,8 @@
 
         <EditText
             android:id="@+id/title"
+            android:text="Title"
+            android:textColor="@color/white"
             android:layout_width="300dp"
             android:layout_height="50dp"
             android:layout_marginLeft="0dp"
@@ -29,6 +31,8 @@
 
         <EditText
             android:id="@+id/description"
+            android:text="Description"
+            android:textColor="@color/white"
             android:layout_width="300dp"
             android:layout_height="50dp"
             android:layout_marginTop="40dp"
@@ -39,9 +43,20 @@
             android:id="@+id/buttonSave"
             android:layout_width="100dp"
             android:layout_height="50dp"
-            android:layout_marginLeft="0dp"
+            android:layout_marginLeft="60dp"
             android:layout_marginTop="30dp"
-            android:text="Save"></Button>
+            android:text="Save"
+            android:onClick="save"
+            ></Button>
+        <Button
+            android:id="@+id/buttonBack"
+            android:layout_width="100dp"
+            android:layout_height="50dp"
+            android:layout_marginLeft="-60dp"
+            android:layout_marginTop="-50dp"
+            android:text="Back"
+            android:onClick="back"
+            ></Button>
 
     </LinearLayout>
 
