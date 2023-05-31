@@ -7,6 +7,18 @@
     android:background="#111111"
     tools:context=".MainActivity">
 
+
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/noteList"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        />
+
+
+
+
     <ImageButton
         android:id="@+id/addNoteButton"
         android:layout_width="100dp"
@@ -21,6 +33,7 @@
         android:onClick="addScreen"
 
         android:src="@drawable/add_button" />
+
 
 
 </RelativeLayout>

@@ -2,8 +2,12 @@ package com.example.notesmobile;
 
 import android.content.ContentValues;
 import android.content.Context;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+
+import java.util.ArrayList;
+import java.util.Date;
 
 public class DB extends SQLiteOpenHelper {
     private SQLiteDatabase dataBase = null;
@@ -51,4 +55,50 @@ public class DB extends SQLiteOpenHelper {
         return values;
     }
 
+    public long deleteTask(int id)
+    {
+        return getWritableDatabase().delete(Notes.tableName, "idNote="+id, null);
+    }
+
+    public ArrayList<Notes> listNotes()
+    {
+        ArrayList<Notes> noteList = new ArrayList<>();
+
+        Cursor cursor = dataBase.query(Notes.tableName, new String[]{
+                        Notes.idColumn,
+                        Notes.titleColumn,Notes.descriptionColumn
+
+                },
+                null, null,null,null,null);
+
+        while (cursor.moveToNext()){
+
+            if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
+
+                Notes notes = null;
+
+                notes = new Notes(
+                        cursor.getInt(cursor.getColumnIndexOrThrow(Notes.idColumn)),
+                        cursor.getString(cursor.getColumnIndexOrThrow(Notes.titleColumn)),
+                        cursor.getString(cursor.getColumnIndexOrThrow(Notes.descriptionColumn))
+                );
+
+                noteList.add(notes);
+
+            } else {
+
+                Notes notes = new Notes(
+                        cursor.getInt(cursor.getColumnIndexOrThrow(Notes.idColumn)),
+                        cursor.getString(cursor.getColumnIndexOrThrow(Notes.titleColumn)),
+                        cursor.getString(cursor.getColumnIndexOrThrow(Notes.descriptionColumn))
+                );
+
+                noteList.add(notes);
+
+            }
+
+
+        }
+        return noteList;
+    }
 }

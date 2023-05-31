@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.Toast;
 
 public class AddScreen extends Activity {
 
@@ -16,7 +17,6 @@ public class AddScreen extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_screen);
-
         db = new DB(this);
     }
 
@@ -27,6 +27,8 @@ public class AddScreen extends Activity {
         try{
             Notes note = new Notes(0,title.getText().toString(), description.getText().toString());
             db.createNewTask(note);
+            Toast.makeText(getApplicationContext(), "Note created", Toast.LENGTH_LONG).show();
+            back(v);
         }
         catch (Exception e)
         {
