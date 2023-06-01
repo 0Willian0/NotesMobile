@@ -55,7 +55,15 @@ public class DB extends SQLiteOpenHelper {
         return values;
     }
 
-    public long deleteTask(int id)
+    public long editNotes(int id, String title, String description)
+    {
+        ContentValues contentValues = new ContentValues();
+        contentValues.put(Notes.titleColumn, title);
+        contentValues.put(Notes.descriptionColumn, description);
+        return getWritableDatabase().update(Notes.tableName, contentValues,"idNote="+id,null);
+    }
+
+    public long deleteNotes(int id)
     {
         return getWritableDatabase().delete(Notes.tableName, "idNote="+id, null);
     }

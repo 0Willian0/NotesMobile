@@ -11,12 +11,6 @@
         android:layout_height="150dp"
         android:orientation="vertical">
 
-        <TextView
-            android:id="@+id/id"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="TextView"
-            android:textColor="#111111"/>
 
         <TextView
             android:id="@+id/title"

@@ -13,7 +13,7 @@ import java.util.ArrayList;
 
 public class NoteViewHolder extends RecyclerView.ViewHolder   {
 
-    TextView title, description,id;
+    TextView title, description;
     ImageButton edit, delete;
     NoteAdapter adapter;
 
@@ -21,10 +21,10 @@ public class NoteViewHolder extends RecyclerView.ViewHolder   {
     public NoteViewHolder(@NonNull View v)
     {
         super(v);
-        id = v.findViewById(R.id.id);
         title = v.findViewById(R.id.title);
         delete = v.findViewById(R.id.deleteNoteButton);
         description = v.findViewById(R.id.description);
+        edit = v.findViewById(R.id.editNoteButton);
     }
 
 

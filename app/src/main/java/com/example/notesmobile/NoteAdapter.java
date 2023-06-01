@@ -1,5 +1,6 @@
 package com.example.notesmobile;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.database.sqlite.SQLiteDatabase;
@@ -16,7 +17,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.io.PrintStream;
 import java.util.ArrayList;
 
-public class NoteAdapter extends RecyclerView.Adapter<NoteViewHolder> implements View.OnClickListener{
+public class NoteAdapter extends RecyclerView.Adapter<NoteViewHolder>{
 
     protected Context context;
     protected ArrayList<Notes> itens;
@@ -41,7 +42,6 @@ public class NoteAdapter extends RecyclerView.Adapter<NoteViewHolder> implements
     @Override
     public void onBindViewHolder(@NonNull NoteViewHolder noteViewHolder, int position)
     {
-        noteViewHolder.id.setText(Integer.toString(itens.get(position).getId()));
         noteViewHolder.title.setText(itens.get(position).getTitle());
         noteViewHolder.description.setText(itens.get(position).getDescription());
 
@@ -51,13 +51,28 @@ public class NoteAdapter extends RecyclerView.Adapter<NoteViewHolder> implements
             public void onClick(View v) {
                 System.out.println(itens.get(noteViewHolder.getAdapterPosition()).getId());
                 int deleteId = itens.get(noteViewHolder.getAdapterPosition()).getId();
-               long delete = db.deleteTask(deleteId);
+               long delete = db.deleteNotes(deleteId);
                 if(delete != -1)
                 {
                     Toast.makeText(context, "Deleted Note", Toast.LENGTH_LONG).show();
                     itens.remove(position);
                     notifyDataSetChanged();
                 }
+            }
+        });
+        noteViewHolder.edit.setOnClickListener(new View.OnClickListener() {
+            DB db = new DB(context);
+            @Override
+            public void onClick(View v) {
+                int editId = itens.get(noteViewHolder.getAdapterPosition()).getId();
+                String title = itens.get(noteViewHolder.getAdapterPosition()).getTitle();
+                String description = itens.get(noteViewHolder.getAdapterPosition()).getDescription();
+                Intent i = new Intent(context, EditScreen.class);
+                i.putExtra("Id",editId);
+                i.putExtra("Title", title);
+                i.putExtra("Description", description);
+                i.setFlags(i.FLAG_ACTIVITY_NEW_TASK);
+                context.startActivity(i);
             }
         });
 
@@ -68,11 +83,8 @@ public class NoteAdapter extends RecyclerView.Adapter<NoteViewHolder> implements
         return itens.size();
     }
 
-    @Override
-    public void onClick(View v)
+    public void editButton()
     {
-        //db.deleteTask(adapter.itens.get(getAdapterPosition()).getId());
 
-        System.out.println(holder.getAdapterPosition());
     }
 }

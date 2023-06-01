@@ -32,9 +32,9 @@ public class MainActivity extends Activity{
 
     }
 
-    public void addScreen(View v)
-    {
+    public void addScreen(View v) {
         Intent add = new Intent(this, AddScreen.class);
         startActivity(add);
     }
+
 }

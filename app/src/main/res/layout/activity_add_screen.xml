@@ -21,8 +21,9 @@
 
         <EditText
             android:id="@+id/title"
-            android:text="Title"
+            android:hint="Title"
             android:textColor="@color/white"
+            android:textColorHint="@color/white"
             android:layout_width="300dp"
             android:layout_height="50dp"
             android:layout_marginLeft="0dp"
@@ -31,7 +32,8 @@
 
         <EditText
             android:id="@+id/description"
-            android:text="Description"
+            android:hint="Description"
+            android:textColorHint="@color/white"
             android:textColor="@color/white"
             android:layout_width="300dp"
             android:layout_height="50dp"
